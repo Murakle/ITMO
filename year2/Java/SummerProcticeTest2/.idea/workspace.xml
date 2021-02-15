@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="e0131d81-cbf3-4caa-89a3-b351f4358693" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="1duevn31t967WU5DOOFVm1ghGCP" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType" factoryName="Kotlin">
+      <module name="HelloWorldPrinter" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="WORKING_DIRECTORY" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType" factoryName="Kotlin script">
+      <module name="HelloWorldPrinter" />
+      <option name="filePath" />
+      <option name="vmParameters" />
+      <option name="alternativeJrePath" />
+      <option name="programParameters" />
+      <option name="passParentEnvs" value="true" />
+      <option name="workingDirectory" />
+      <option name="isAlternativeJrePathEnabled" value="false" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="filePath" />
+      <option name="vmParameters" />
+      <option name="alternativeJrePath" />
+      <option name="programParameters" />
+      <option name="passParentEnvs" value="true" />
+      <option name="workingDirectory" />
+      <option name="isAlternativeJrePathEnabled" value="false" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="WORKING_DIRECTORY" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="HelloWorld" type="#org.osmorc.OsgiConfigurationType" vmParameters="" programParameters="" includeAllBundlesInClassPath="false" workingDir="$PROJECT_DIR$/out/run.osgi/" useAlternativeJre="false" alternativeJrePath="" frameworkStartLevel="1" defaultStartLevel="1" generateWorkingDir="false">
+      <framework instance="Felix (6.0.3)" />
+      <additionalProperties systemPackages="" debugMode="false" startConsole="true" bootDelegation="" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e0131d81-cbf3-4caa-89a3-b351f4358693" name="Default Changelist" comment="" />
+      <created>1593279637461</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1593279637461</updated>
+      <workItem from="1593279641379" duration="819000" />
+      <workItem from="1593525132211" duration="10211000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="184" y="84" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1593528885708">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="184" y="84" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1440.900@0.0.1440.900" timestamp="1593528885708" />
+    <state x="184" y="101" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1440.833@0.23.1440.833" timestamp="1593527012439" />
+    <state x="533" y="166" key="#com.intellij.ide.util.MemberChooser" timestamp="1593530967584">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="533" y="166" key="#com.intellij.ide.util.MemberChooser/0.0.1440.900@0.0.1440.900" timestamp="1593530967584" />
+    <state x="340" y="135" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog" timestamp="1593279845105">
+      <screen x="0" y="23" width="1440" height="833" />
+    </state>
+    <state x="340" y="135" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog/0.23.1440.833@0.23.1440.833" timestamp="1593279845105" />
+    <state width="1398" height="211" key="GridCell.Tab.0.bottom" timestamp="1593536419455">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="211" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1593536419455" />
+    <state width="1398" height="212" key="GridCell.Tab.0.bottom/0.23.1440.833@0.23.1440.833" timestamp="1593530034887" />
+    <state width="1398" height="211" key="GridCell.Tab.0.center" timestamp="1593536419453">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="211" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1593536419453" />
+    <state width="1398" height="212" key="GridCell.Tab.0.center/0.23.1440.833@0.23.1440.833" timestamp="1593530034884" />
+    <state width="1398" height="211" key="GridCell.Tab.0.left" timestamp="1593536419452">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="211" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1593536419452" />
+    <state width="1398" height="212" key="GridCell.Tab.0.left/0.23.1440.833@0.23.1440.833" timestamp="1593530034880" />
+    <state width="1398" height="211" key="GridCell.Tab.0.right" timestamp="1593536419454">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="211" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1593536419454" />
+    <state width="1398" height="212" key="GridCell.Tab.0.right/0.23.1440.833@0.23.1440.833" timestamp="1593530034886" />
+    <state x="208" y="23" width="1024" height="833" key="SettingsEditor" timestamp="1593532304938">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="208" y="23" key="SettingsEditor/0.0.1440.900@0.0.1440.900" timestamp="1593532304938" />
+    <state x="208" y="23" width="1024" height="833" key="SettingsEditor/0.23.1440.833@0.23.1440.833" timestamp="1593527268822" />
+    <state x="114" y="145" key="new project wizard" timestamp="1593532681469">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="114" y="145" key="new project wizard/0.0.1440.900@0.0.1440.900" timestamp="1593532681469" />
+  </component>
+</project>

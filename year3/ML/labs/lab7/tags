@@ -1,0 +1,68 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+IncrementalPCA	all_code.py	/^from sklearn.decomposition import IncrementalPCA$/;"	i
+IncrementalPCA	main.py	/^from sklearn.decomposition import IncrementalPCA$/;"	i
+TSNE	all_code.py	/^from sklearn.manifold import TSNE$/;"	i
+TSNE	main.py	/^from sklearn.manifold import TSNE$/;"	i
+chebishev_distance	all_code.py	/^def chebishev_distance(row1, row2):$/;"	f
+chebishev_distance	distance.py	/^def chebishev_distance(row1, row2):$/;"	f
+choose_centers	all_code.py	/^def choose_centers(dataset, k: int):$/;"	f
+choose_centers	kmeans.py	/^def choose_centers(dataset, k: int):$/;"	f
+compare_centers	all_code.py	/^def compare_centers(centers, centers_old):$/;"	f
+compare_centers	kmeans.py	/^def compare_centers(centers, centers_old):$/;"	f
+distance	all_code.py	/^import distance$/;"	i
+distance	main.py	/^import distance$/;"	i
+distances	all_code.py	/^distances = [euclidean_distance, chebishev_distance]$/;"	v
+distances	distance.py	/^distances = [euclidean_distance, chebishev_distance]$/;"	v
+distances_names	all_code.py	/^distances_names = ["Euclidean", "Chebishev"]$/;"	v
+distances_names	distance.py	/^distances_names = ["Euclidean", "Chebishev"]$/;"	v
+draw	all_code.py	/^def draw(X, klasters):$/;"	f
+draw	main.py	/^def draw(X, klasters):$/;"	f
+euclidean_distance	all_code.py	/^def euclidean_distance(row1, row2):$/;"	f
+euclidean_distance	distance.py	/^def euclidean_distance(row1, row2):$/;"	f
+get_all_distances	all_code.py	/^def get_all_distances(dataset, distance_index):$/;"	f
+get_all_distances	distance.py	/^def get_all_distances(dataset, distance_index):$/;"	f
+get_center	all_code.py	/^def get_center(row1, row2):$/;"	f
+get_center	kmeans.py	/^def get_center(row1, row2):$/;"	f
+get_distance	all_code.py	/^def get_distance(index, row1, row2):$/;"	f
+get_distance	all_code.py	/^from distance import get_distance$/;"	i
+get_distance	distance.py	/^def get_distance(index, row1, row2):$/;"	f
+get_distance	kmeans.py	/^from distance import get_distance$/;"	i
+get_distance	metrix.py	/^from distance import get_distance$/;"	i
+get_distance_name	all_code.py	/^def get_distance_name(index):$/;"	f
+get_distance_name	distance.py	/^def get_distance_name(index):$/;"	f
+get_distances_amount	all_code.py	/^def get_distances_amount():$/;"	f
+get_distances_amount	distance.py	/^def get_distances_amount():$/;"	f
+get_minmax	train.py	/^def get_minmax(dataset):$/;"	f
+get_unique_values	train.py	/^def get_unique_values(dataset):$/;"	f
+kmeans	all_code.py	/^def kmeans(dataset, k: int, distance_index: int, max_iter: int):$/;"	f
+kmeans	all_code.py	/^from kmeans import kmeans$/;"	i
+kmeans	kmeans.py	/^def kmeans(dataset, k: int, distance_index: int, max_iter: int):$/;"	f
+kmeans	main.py	/^from kmeans import kmeans$/;"	i
+manhattan_distance	all_code.py	/^def manhattan_distance(row1, row2):$/;"	f
+manhattan_distance	distance.py	/^def manhattan_distance(row1, row2):$/;"	f
+minkovskiy_distance	all_code.py	/^def minkovskiy_distance(row1, row2, p):$/;"	f
+minkovskiy_distance	distance.py	/^def minkovskiy_distance(row1, row2, p):$/;"	f
+normalize	train.py	/^def normalize(dataset):$/;"	f
+np	all_code.py	/^import numpy as np$/;"	i
+np	main.py	/^import numpy as np$/;"	i
+pd	train.py	/^import pandas as pd$/;"	i
+plt	all_code.py	/^from matplotlib import pyplot as plt$/;"	i
+plt	main.py	/^from matplotlib import pyplot as plt$/;"	i
+rand_index	all_code.py	/^def rand_index(klasters, dataset):$/;"	f
+rand_index	all_code.py	/^from metrix import rand_index, silhouette$/;"	i
+rand_index	main.py	/^from metrix import rand_index, silhouette$/;"	i
+rand_index	metrix.py	/^def rand_index(klasters, dataset):$/;"	f
+random	all_code.py	/^import random$/;"	i
+random	kmeans.py	/^import random$/;"	i
+silhouette	all_code.py	/^def silhouette(k, klasters, dataset, distance_index):$/;"	f
+silhouette	all_code.py	/^from metrix import rand_index, silhouette$/;"	i
+silhouette	main.py	/^from metrix import rand_index, silhouette$/;"	i
+silhouette	metrix.py	/^def silhouette(k, klasters, dataset, distance_index):$/;"	f
+train	all_code.py	/^from train import train$/;"	i
+train	main.py	/^from train import train$/;"	i
+train	train.py	/^def train():$/;"	f

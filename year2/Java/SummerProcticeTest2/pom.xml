@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.hello.world</groupId>
+    <artifactId>SummerProcticeTest2</artifactId>
+    <packaging>bundle</packaging>
+    <version>1.0.0</version>
+    <name>Hello-world</name>
+    <properties>
+        <maven.compiler.release>11</maven.compiler.release>
+    </properties>
+
+<!--    <dependencies>-->
+<!--        <dependency>-->
+<!--            <groupId>org.apache.felix</groupId>-->
+<!--            <artifactId>org.osgi.core</artifactId>-->
+<!--            <version>1.4.0</version>-->
+<!--        </dependency>-->
+<!--    </dependencies>-->
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <version>4.2.1</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <instructions>
+                        <Bundle-SymbolicName>
+                            ${project.artifactId}
+                        </Bundle-SymbolicName>
+                        <Bundle-Name>
+                            ${project.name}
+                        </Bundle-Name>
+                        <Bundle-Version>
+                            ${project.version}
+                        </Bundle-Version>
+                        <Bundle-Activator>
+                            ${project.groupId}.Activator
+                        </Bundle-Activator>
+                        <Private-Package>
+                            ${project.groupId}
+                        </Private-Package>
+                    </instructions>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
