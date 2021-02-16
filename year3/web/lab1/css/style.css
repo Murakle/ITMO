@@ -1,0 +1,175 @@
+* {
+  padding: 0;
+  margin: 0;
+  font: 1em "Fira Sans", sans-serif;
+  color: #6f7f89;
+  color: inherit;
+}
+h1 {
+  font: 300 normal 1.8em sans-serif;
+  color: #6f7f89;
+}
+
+h2 {
+  font: 500 2em "Roboto", sans-serif;
+  color: #6f7f89;
+  margin: 1em 0px;
+}
+h3 {
+  font: 500 1.8em "Roboto", sans-serif;
+  color: #6f7f89;
+  margin: 0;
+}
+body {
+  background-color: #ffffff;
+  margin: 0 auto;
+  max-width: 1000px;
+  padding: 45px;
+}
+
+.shrink-block {
+  min-width: 45%;
+}
+
+header {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  margin-bottom: 20px;
+  grid-template-areas: "header button .";
+}
+.main-header {
+  grid-area: header;
+}
+.refresh-button {
+  grid-area: button;
+  margin: auto;
+  background-color: #c9d2d7;
+  color: #8f8f8f;
+  padding: 10px 10px;
+  font-size: 0.9em;
+  border-radius: 5px;
+  border: none;
+}
+.refresh-button-content-mobile {
+  font-size: 1.5em;
+  display: none;
+}
+main {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.major-city {
+  grid-area: major-city;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.major-city-main-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas:
+    "city-name city-name"
+    "weather-icon temperature";
+}
+
+.major-city-header {
+  grid-area: city-name;
+  margin-top: 5px;
+}
+.major-city-weather-icon {
+  grid-area: weather-icon;
+}
+.major-city-temperature {
+  grid-area: temperature;
+}
+.major-city-weather-icon,
+.major-city-temperature {
+  margin: 20px 0px;
+  color: #7c7c7c;
+  font: 500 5.5em "Fira Sans", sans-serif;
+}
+.weather-param {
+  background-color: #a7afb2;
+  font-size: 0.9em;
+  color: #ffffff;
+  padding: 8px 10px;
+  display: flex;
+  justify-content: space-between;
+  margin: 7px 0px;
+}
+.weather-param-name {
+  font-weight: 600;
+}
+.weather-param-value {
+  font-weight: 300;
+}
+.favorites-header {
+  margin-top: 1em;
+  /* margin-bottom: 0px; */
+  font: 400 1.6em sans-serif;
+}
+.add-favorite {
+  margin: 15px 0px;
+  display: flex;
+  justify-content: right;
+}
+.add-favorite-field {
+  border: none;
+  background-color: #f1f1f1;
+  color: #6f7f89;
+  margin-left: 7em;
+  margin-right: 1em;
+  border-radius: 5px;
+  flex-grow: 1;
+  font-size: 0.8em;
+  padding: 0.5em 1.5em;
+}
+
+.circle-button {
+  background-color: #6f8288;
+  border: none;
+  color: #f1f1f1;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+}
+.city-pair {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: stretch;
+}
+.minor-city {
+  margin-top: 20px;
+}
+.minor-city-main-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.minor-city-weather-icon,
+.minor-city-temperature {
+  /* margin: 20px 0px; */
+  color: #7c7c7c;
+  font: 500 2em "Fira Sans", sans-serif;
+}
+@media only screen and (max-width: 600px) {
+  .shrink-block {
+    width: 100%;
+  }
+  .add-favorite-field {
+    margin-left: 0;
+  }
+  .refresh-button-content-mobile {
+    display: inline;
+  }
+  .refresh-button-content-desktop {
+    display: none;
+  }
+  header {
+    grid-template-columns: 2fr 1fr;
+  }
+}

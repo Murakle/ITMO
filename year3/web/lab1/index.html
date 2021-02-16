@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet"> 
+  <script src="https://kit.fontawesome.com/d7cc4028cd.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="./css/style.css">
+  
+  <title>Weather</title>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1 class="main-header">Погода здесь</h1>
+    <button class="refresh-button">
+      <span class="refresh-button-content-desktop">Обновить геолокацию</span>
+      <i class="fas fa-sync-alt refresh-button-content-mobile"></i>
+    </button>
+  </header>
+  <main>
+    <div class="major-city-main-info shrink-block">
+      <h2 class="major-city-header">Saint Petersburg</h2>
+      <div class="major-city-weather-icon"><i class="fas fa-sun"></i></div>
+      <div class="major-city-temperature">5ºC</div>
+    </div>
+    <div class="weather-params-container shrink-block">
+      <div class="weather-param">
+        <strong class="weather-param-name">Ветер</strong>
+        <span class="weather-param-value">4,0 м/с, Юго-Восточный</span>
+      </div>
+      <div class="weather-param">
+        <strong class="weather-param-name">Облачность</strong>
+        <span class="weather-param-value">Облачно с прояснениями</span>
+      </div>
+      <div class="weather-param">
+        <strong class="weather-param-name">Давление</strong>
+        <span class="weather-param-value">755 мм рт. ст.</span>
+      </div>
+      <div class="weather-param">
+        <strong class="weather-param-name">Влажность</strong>
+        <span class="weather-param-value">75%</span>
+      </div>
+      <div class="weather-param">
+        <strong class="weather-param-name">Координаты</strong>
+        <span class="weather-param-value">[59.88, 30.42]</span>
+      </div>
+    </div>
+
+    <h2 class="favorites-header shrink-block">Избранное</h2>
+    <div class="add-favorite shrink-block">
+      <input class="add-favorite-field" type="text" placeholder="Add new city" />
+      <button class="add-favorite-button circle-button">+</button>
+    </div>
+
+    <div class="minor-city shrink-block">
+      <div class="minor-city-main-info">
+        <h3 class="minor-city-header">Moscow</h3>
+        <div class="minor-city-temperature">10ºC</div>
+        <div class="minor-city-weather-icon"><i class="fas fa-cloud-sun"></i></div>
+        <button class="minor-city-remove-button circle-button">x</button>
+      </div>
+      <div class="weather-params-container shrink-block">
+        <div class="weather-param">
+          <strong class="weather-param-name">Ветер</strong>
+          <span class="weather-param-value">4,0 м/с, Юго-Восточный</span>
+        </div>
+        <div class="weather-param">
+          <strong class="weather-param-name">Облачность</strong>
+          <span class="weather-param-value">Облачно с прояснениями</span>
+        </div>
+        <div class="weather-param">
+          <strong class="weather-param-name">Давление</strong>
+          <span class="weather-param-value">755 мм рт. ст.</span>
+        </div>
+        <div class="weather-param">
+          <strong class="weather-param-name">Влажность</strong>
+          <span class="weather-param-value">75%</span>
+        </div>
+        <div class="weather-param">
+          <strong class="weather-param-name">Координаты</strong>
+          <span class="weather-param-value">[59.88, 30.42]</span>
+        </div>
+      </div>
+    </div>
+    <div class="minor-city shrink-block">
+      <div class="minor-city-main-info">
+        <h3 class="minor-city-header">Moscow</h3>
+        <div class="minor-city-temperature">10ºC</div>
+        <div class="minor-city-weather-icon"><i class="fas fa-cloud-sun"></i></div>
+        <button class="minor-city-remove-button circle-button">x</button>
+      </div>
+      <div class="weather-params-container shrink-block">
+        <div class="weather-param">
+          <strong class="weather-param-name">Ветер</strong>
+          <span class="weather-param-value">4,0 м/с, Юго-Восточный</span>
+        </div>
+        <div class="weather-param">
+          <strong class="weather-param-name">Облачность</strong>
+          <span class="weather-param-value">Облачно с прояснениями</span>
+        </div>
+        <div class="weather-param">
+          <strong class="weather-param-name">Давление</strong>
+          <span class="weather-param-value">755 мм рт. ст.</span>
+        </div>
+        <div class="weather-param">
+          <strong class="weather-param-name">Влажность</strong>
+          <span class="weather-param-value">75%</span>
+        </div>
+        <div class="weather-param">
+          <strong class="weather-param-name">Координаты</strong>
+          <span class="weather-param-value">[59.88, 30.42]</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="minor-city shrink-block">
+      <div class="minor-city-main-info">
+        <h3 class="minor-city-header">Moscow</h3>
+        <div class="minor-city-temperature">10ºC</div>
+        <div class="minor-city-weather-icon"><i class="fas fa-cloud-sun"></i></div>
+        <button class="minor-city-remove-button circle-button">x</button>
+      </div>
+      <div class="weather-params-container shrink-block">
+        <div class="weather-param">
+          <strong class="weather-param-name">Ветер</strong>
+          <span class="weather-param-value">4,0 м/с, Юго-Восточный</span>
+        </div>
+        <div class="weather-param">
+          <strong class="weather-param-name">Облачность</strong>
+          <span class="weather-param-value">Облачно с прояснениями</span>
+        </div>
+        <div class="weather-param">
+          <strong class="weather-param-name">Давление</strong>
+          <span class="weather-param-value">755 мм рт. ст.</span>
+        </div>
+        <div class="weather-param">
+          <strong class="weather-param-name">Влажность</strong>
+          <span class="weather-param-value">75%</span>
+        </div>
+        <div class="weather-param">
+          <strong class="weather-param-name">Координаты</strong>
+          <span class="weather-param-value">[59.88, 30.42]</span>
+        </div>
+      </div>
+    </div>
+    <div class="minor-city shrink-block">
+      <div class="minor-city-main-info">
+        <h3 class="minor-city-header">Moscow</h3>
+        <div class="minor-city-temperature">10ºC</div>
+        <div class="minor-city-weather-icon"><i class="fas fa-cloud-sun"></i></div>
+        <button class="minor-city-remove-button circle-button">x</button>
+      </div>
+      <div class="weather-params-container shrink-block">
+        <div class="weather-param">
+          <strong class="weather-param-name">Ветер</strong>
+          <span class="weather-param-value">4,0 м/с, Юго-Восточный</span>
+        </div>
+        <div class="weather-param">
+          <strong class="weather-param-name">Облачность</strong>
+          <span class="weather-param-value">Облачно с прояснениями</span>
+        </div>
+        <div class="weather-param">
+          <strong class="weather-param-name">Давление</strong>
+          <span class="weather-param-value">755 мм рт. ст.</span>
+        </div>
+        <div class="weather-param">
+          <strong class="weather-param-name">Влажность</strong>
+          <span class="weather-param-value">75%</span>
+        </div>
+        <div class="weather-param">
+          <strong class="weather-param-name">Координаты</strong>
+          <span class="weather-param-value">[59.88, 30.42]</span>
+        </div>
+      </div>
+    </div>
+    
+  </main>
+</div>
+</body>
+</html>
