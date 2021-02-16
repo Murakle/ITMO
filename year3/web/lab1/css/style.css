@@ -156,7 +156,7 @@ main {
   color: #7c7c7c;
   font: 500 2em "Fira Sans", sans-serif;
 }
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 700px) {
   .shrink-block {
     width: 100%;
   }
