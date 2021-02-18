@@ -15,6 +15,7 @@ h2 {
   color: #6f7f89;
   margin: 1em 0px;
 }
+
 h3 {
   font: 500 1.8em "Roboto", sans-serif;
   color: #6f7f89;
@@ -26,7 +27,16 @@ body {
   max-width: 1000px;
   padding: 45px;
 }
+ul {
+  list-style: none;
+}
 
+section,
+.minor-cities-list {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
 .shrink-block {
   min-width: 45%;
 }
@@ -53,11 +63,6 @@ header {
 .refresh-button-content-mobile {
   font-size: 1.5em;
   display: none;
-}
-main {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
 }
 
 .major-city {
@@ -104,6 +109,7 @@ main {
 }
 .weather-param-value {
   font-weight: 300;
+  text-align: right;
 }
 .favorites-header {
   margin-top: 1em;
@@ -134,6 +140,7 @@ main {
   border-radius: 50%;
   width: 40px;
   height: 40px;
+  flex-shrink: 0;
 }
 .city-pair {
   display: flex;
@@ -171,5 +178,12 @@ main {
   }
   header {
     grid-template-columns: 2fr 1fr;
+  }
+  h3 {
+    font-size: 1.5em;
+  }
+  .minor-city-weather-icon,
+  .minor-city-temperature {
+    font-size: 5vw;
   }
 }
