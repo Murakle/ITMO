@@ -91,6 +91,14 @@ function minorSuccess(clone, cityName) {
 function majorSuccess(clone, cityName) {
   closePopup();
 }
+function removeMinorCity(evt) {
+  evt.preventDefault();
+  block = this.parentNode.parentNode;
+  cityName = block.getAttribute('cityName');
+  block.remove();
+  currentCities.delete(cityName);
+  localStorage.setItem('cities', JSON.stringify(Array.from(currentCities.keys())));
+}
 function getRequestWithLocation(position, resultBlock, errorFunc) {
   const latitude  = position.coords.latitude;
   const longitude = position.coords.longitude;
@@ -124,8 +132,12 @@ if(!cities) {
   localStorage.setItem('cities', JSON.stringify(cities));
   citiesAmount = 0;
 }
+console.log(cities);
 for (let i = 0; i < cities.length; i++) {
   let clone = document.importNode(minorCityTemplate.content.firstElementChild, true);
+  clone.setAttribute('cityName', cities[i]);
+  let closeButton = clone.querySelector('.minor-city-remove-button');
+  closeButton.addEventListener('click', removeMinorCity);
   getRequestWithCityName(cities[i], clone, minorSuccess, minorError);
 }
 // minor cities header 
@@ -133,10 +145,19 @@ let addForm = document.querySelector('.add-favorite');
 addForm.addEventListener("submit", function (evt) {
   evt.preventDefault();
   let cityName = addForm.cityName.value;
-  if (cities.includes(cityName)) {
+  if (currentCities.has(cityName)) {
     alert("This city is already in favorites");
   } else {
     let clone = document.importNode(minorCityTemplate.content.firstElementChild, true);
+    clone.setAttribute('cityName', cityName);
+    let closeButton = clone.querySelector('.minor-city-remove-button');
+    closeButton.addEventListener('click', removeMinorCity);
     getRequestWithCityName(cityName, clone, minorSuccess, minorError);
   }
 });
+
+// todo 
+// 1. remove buttons √
+// 2. refresh  button 
+// 3. loading block
+// 4. css popup
