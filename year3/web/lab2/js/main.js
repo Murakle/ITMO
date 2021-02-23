@@ -1,10 +1,21 @@
-const cloudiness = ['Sunny', 'Partly cloudy', 'Broken clouds', 'Cloudy'];
+const cloudiness = ['Clear', 'Partly cloudy', 'Broken clouds', 'Cloudy'];
 const directions = ['North', 'North-East', 'East', 'South-East', 'South', 'South-West', 'West', 'North-West'];
+let majorCity = document.querySelector('.major-city');
+let welcomePopup = document.querySelector('.welcome-pop-up');
+let minorCityTemplate = document.querySelector('#minor-city-template');
+let currentCities = new Map(); // cityName, cityBlock
+let minorCitiesList = document.querySelector('.minor-cities-list');
+let cities = JSON.parse(localStorage.getItem('cities'));
 
 function parseWindDeg(deg) {
   degrees = Math.round(deg * 8 / 360);
   degrees = (degrees + 8) % 8
   return directions[degrees];
+}
+
+function closePopup() {
+  welcomePopup.classList.add('hidden');
+  document.body.classList.remove('body-noscroll');
 }
 
 function parseResponse(responseText) {
@@ -16,7 +27,7 @@ function parseResponse(responseText) {
     "pres": `${info.main.pressure} hpa`,
     "hum": `${info.main.humidity} %`,
     "coord": `[${info.coord.lat}, ${info.coord.lon}]`,
-    "cloud": `${cloudiness[Math.trunc(info.clouds.all * 4 - 1e-9)]}`,
+    "cloud": `${cloudiness[Math.trunc(info.clouds.all / 25 - 1e-9)]}`,
     "icon": `http://openweathermap.org/img/wn/${info.weather[0].icon}@4x.png`
   };
   console.log(city);
@@ -31,68 +42,67 @@ function refreshCityParams(paramsBlock, city) {
   paramsBlock.querySelector('.weather-coord').querySelector('.weather-param-value').innerHTML = city.coord;
 }
 
-function refreshMajorCity(city) {
-  let majorCity = document.querySelector('.major-city');
-  let majorCityHeader = majorCity.querySelector('.major-city-header');
-  let majorCityTemp = majorCity.querySelector('.major-city-temperature');
-  let majorCityIcon = majorCity.querySelector('.major-city-weather-icon');
-  majorCityHeader.innerHTML = city.name;
-  majorCityTemp.innerHTML = city.temp;
-  majorCityIcon.src = city.icon;
-  let paramsBlock = majorCity.querySelector('ul');
+function refreshCity(cityBlock, city) {
+  cityBlock.querySelector('.city-header').innerHTML = city.name;
+  cityBlock.querySelector('.city-temperature').innerHTML = city.temp;
+  cityBlock.querySelector('.city-weather-icon').src = city.icon;
+  let paramsBlock = cityBlock.querySelector('ul');
   refreshCityParams(paramsBlock, city);
 }
-
-function getRequestWithLocation(position) {
-  const latitude  = position.coords.latitude;
-  const longitude = position.coords.longitude;
-  console.log(`Latitude: ${latitude} °, Longitude: ${longitude} °`);
+function getRequest(requestString, resultBlock, successFunc, errorFunc) {
   const data = null;
   const xhr = new XMLHttpRequest();
   xhr.addEventListener("readystatechange", function () {
     if (this.readyState === this.DONE) {
-      console.log(this.responseText);
-      city = parseResponse(this.responseText);
-      refreshMajorCity(city);
+      if(this.status === 200) {
+        let city = parseResponse(this.responseText);
+        refreshCity(resultBlock, city);
+        successFunc(resultBlock, city.name);
+      } else {
+        errorFunc();
+      }
     }
   });
-  xhr.open("GET", `https://community-open-weather-map.p.rapidapi.com/weather?lat=${latitude}&lon=${longitude}&lang=en&units=metric`);
+  xhr.open("GET", requestString);
   xhr.setRequestHeader("x-rapidapi-key", "dc1339089bmshce8aa1495e73b22p119cc5jsn2333ba2ed2b7");
   xhr.setRequestHeader("x-rapidapi-host", "community-open-weather-map.p.rapidapi.com");
   xhr.send(data);
 }
+
 function geolocationError() {
-  errorText = document.querySelector('.error-text');
+  errorText = document.querySelector('.geoloc-error');
   errorText.classList.remove('hidden');
 }
 function geolocationSuccess(position) {
-  let welcomPopup = document.querySelector('.welcome-pop-up');
-  welcomPopup.classList.add('hidden');
-  document.body.classList.remove('body-noscroll');
-  getRequestWithLocation(position);
+  getRequestWithLocation(position, majorCity, majorSuccess, majorError);
+}
+function majorError() {
+  errorText = welcomePopup.querySelector('.city-name-error');
+  errorText.classList.remove('hidden');
+}
+function minorError() {
+  alert("No city with this name");
+}
+function minorSuccess(clone, cityName) {
+  minorCitiesList.appendChild(clone);
+  currentCities.set(cityName, clone);
+  localStorage.setItem('cities', JSON.stringify(Array.from(currentCities.keys())));
+}
+function majorSuccess(clone, cityName) {
+  closePopup();
+}
+function getRequestWithLocation(position, resultBlock, errorFunc) {
+  const latitude  = position.coords.latitude;
+  const longitude = position.coords.longitude;
+  getRequest(`https://community-open-weather-map.p.rapidapi.com/weather?lat=${latitude}&lon=${longitude}&lang=en&units=metric`, resultBlock, errorFunc);
+}
+function getRequestWithCityName(cityName, resultBlock, successFunc, errorFunc) {
+  getRequest(`https://community-open-weather-map.p.rapidapi.com/weather?q=${cityName}&lang=en&units=metric`, resultBlock, successFunc, errorFunc);  
 }
 
-function getRequestWithCityName() {
-  city_name = "Kazan";
-  const data = null;
-  const xhr = new XMLHttpRequest();
-  xhr.addEventListener("readystatechange", function () {
-    if (this.readyState === this.DONE) {
-      console.log(this.responseText);
-      city = parseResponse(this.responseText);
-      refreshMajorCity(city);
-    }
-  });
-  xhr.open("GET", "https://community-open-weather-map.p.rapidapi.com/weather?q=Moscow,ru&lang=en&units=metric");
-  xhr.setRequestHeader("x-rapidapi-key", "dc1339089bmshce8aa1495e73b22p119cc5jsn2333ba2ed2b7");
-  xhr.setRequestHeader("x-rapidapi-host", "community-open-weather-map.p.rapidapi.com");
-  xhr.send(data);
-}
-
-
-let showButton = document.querySelector('.show-weather-button');
+// Major city 
 let geoButton = document.querySelector('.use-geolocation-button');
-
+let welcomeForm = document.querySelector('.pop-up-form');
 geoButton.addEventListener("click", function (evt) {
   evt.preventDefault();
   if(!navigator.geolocation) {
@@ -102,9 +112,31 @@ geoButton.addEventListener("click", function (evt) {
     navigator.geolocation.getCurrentPosition(geolocationSuccess, geolocationError);
   }
 });
-showButton.addEventListener("click", function (evt) {
+welcomeForm.addEventListener("submit", function (evt) {
   evt.preventDefault();
-  
+  let cityName = welcomeForm.cityName.value;
+  getRequestWithCityName(cityName, majorCity, majorSuccess, majorError);
 });
 
-
+// Minor cities 
+if(!cities) {
+  cities = [];
+  localStorage.setItem('cities', JSON.stringify(cities));
+  citiesAmount = 0;
+}
+for (let i = 0; i < cities.length; i++) {
+  let clone = document.importNode(minorCityTemplate.content.firstElementChild, true);
+  getRequestWithCityName(cities[i], clone, minorSuccess, minorError);
+}
+// minor cities header 
+let addForm = document.querySelector('.add-favorite');
+addForm.addEventListener("submit", function (evt) {
+  evt.preventDefault();
+  let cityName = addForm.cityName.value;
+  if (cities.includes(cityName)) {
+    alert("This city is already in favorites");
+  } else {
+    let clone = document.importNode(minorCityTemplate.content.firstElementChild, true);
+    getRequestWithCityName(cityName, clone, minorSuccess, minorError);
+  }
+});

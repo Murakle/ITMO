@@ -101,7 +101,7 @@ header {
 .major-city-weather-icon {
   grid-area: weather-icon;
   margin: 50% 50%;
-  transform: translate(-50%, -50%) scale(1.3);
+  transform: translate(-50%, -50%) scale(0.9);
 }
 .major-city-temperature {
   grid-area: temperature;
@@ -171,13 +171,14 @@ header {
   justify-content: space-between;
   margin-bottom: 10px;
 }
-.minor-city-weather-icon,
 .minor-city-temperature {
   /* margin: 20px 0px; */
   color: #7c7c7c;
   font: 500 2em "Fira Sans", sans-serif;
 }
-
+.minor-city-weather-icon {
+  width: 70px;
+}
 .welcome-pop-up {
   position: absolute;
   background-color: #f1f1f1;
@@ -211,9 +212,11 @@ header {
   h3 {
     font-size: 1.5em;
   }
-  .minor-city-weather-icon,
   .minor-city-temperature {
     font-size: 5vw;
+  }
+  .minor-city-weather-icon {
+    width: 60px;
   }
   .major-city-temperature {
     font-size: 4.5em;

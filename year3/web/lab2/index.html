@@ -22,9 +22,9 @@
   <main>
     <section class="major-city">
       <div class="major-city-main-info shrink-block">
-        <h2 class="major-city-header">Saint Petersburg</h2>
-        <div class="major-city-weather-icon-container"><img class="major-city-weather-icon"></img></div>
-        <div class="major-city-temperature">5ºC</div>
+        <h2 class="city-header major-city-header">Saint Petersburg</h2>
+        <div class="major-city-weather-icon-container"><img class="city-weather-icon major-city-weather-icon"></img></div>
+        <div class="city-temperature major-city-temperature">5ºC</div>
       </div>
       <div class="shrink-block">
         <ul>
@@ -54,54 +54,57 @@
     <section class="favorites-head">
       <h2 class="favorites-header shrink-block">Favorites</h2>
       <form class="add-favorite shrink-block">
-        <input class="add-favorite-field" type="text" placeholder="Add new city" />
-        <button class="add-favorite-button circle-button">+</button>
+        <input class="add-favorite-field" type="text" placeholder="Add new city" name="cityName"/>
+        <input class="add-favorite-button circle-button" type="submit" value="+" />
       </form>
     </section>
     <section class="minor-cities">
       <ul class="minor-cities-list">
-        <li class="minor-city shrink-block">
-          <div class="minor-city-main-info">
-            <h3 class="minor-city-header">Moscow</h3>
-            <div class="minor-city-temperature">10ºC</div>
-            <div class="minor-city-weather-icon"><i class="fas fa-cloud-sun"></i></div>
-            <button class="minor-city-remove-button circle-button">x</button>
-          </div>
-          <ul class="weather-params-container">
-            <li class="weather-param">
-              <strong class="weather-param-name">Ветер</strong>
-              <span class="weather-param-value">4,0 м/с, Юго-Восточный</span>
-            </li>
-            <li class="weather-param">
-              <strong class="weather-param-name">Облачность</strong>
-              <span class="weather-param-value">Облачно с прояснениями</span>
-            </li>
-            <li class="weather-param">
-              <strong class="weather-param-name">Давление</strong>
-              <span class="weather-param-value">755 мм рт. ст.</span>
-            </li>
-            <li class="weather-param">
-              <strong class="weather-param-name">Влажность</strong>
-              <span class="weather-param-value">75%</span>
-            </li>
-            <li class="weather-param">
-              <strong class="weather-param-name">Координаты</strong>
-              <span class="weather-param-value">[59.88, 30.42]</span>
-            </li>
-          </ul>
-        </li>
+        <template id="minor-city-template">
+          <li class="minor-city shrink-block">
+            <div class="minor-city-main-info">
+              <h3 class="city-header minor-city-header">Moscow</h3>
+              <div class="city-temperature minor-city-temperature ">10ºC</div>
+              <div class="minor-city-weather-icon-container"><img class="city-weather-icon minor-city-weather-icon"></img></div>
+              <button class="minor-city-remove-button circle-button">x</button>
+            </div>
+            <ul class="weather-params-container">
+              <li class="weather-param weather-wind">
+                <strong class="weather-param-name">Wind</strong>
+                <span class="weather-param-value">4,0 м/с, Юго-Восточный</span>
+              </li>
+              <li class="weather-param weather-cloud">
+                <strong class="weather-param-name">Clouds</strong>
+                <span class="weather-param-value">Облачно с прояснениями</span>
+              </li>
+              <li class="weather-param weather-pressure">
+                <strong class="weather-param-name">Pressure</strong>
+                <span class="weather-param-value">755 мм рт. ст.</span>
+              </li>
+              <li class="weather-param weather-humidity">
+                <strong class="weather-param-name">Humidity</strong>
+                <span class="weather-param-value">75%</span>
+              </li>
+              <li class="weather-param weather-coord">
+                <strong class="weather-param-name">Coordinates</strong>
+                <span class="weather-param-value">[59.88, 30.42]</span>
+              </li>
+            </ul>
+          </li>
+        </template>
       </ul>
     </section>
   </main>
   </div>
   <div class="welcome-pop-up">
     <h1 class="welcome-pop-up-header">Enter your city name or give permission to use your geolocation</h1>
-    <form>
-      <input type="text" placeholder="Enter city name">
-      <input type="submit" value="Show weather" class="show-weather-button">
+    <form class="pop-up-form">
+      <input type="text" name="cityName" placeholder="Enter city name" />
+      <input type="submit" value="Show weather" class="show-weather-button" />
       <span>or</span>
       <button class="use-geolocation-button">Use geolocation</button>
-      <span class="error-text hidden"><br/>You haven't gave permission to use your geolocation, try again or fix something in settings or your browser doesn't support geolocation</span>
+      <span class="error-text geoloc-error hidden"><br/>You haven't gave permission to use your geolocation, try again or fix something in settings or your browser doesn't support geolocation</span>
+      <span class="error-text city-name-error hidden"><br/>Not correct city name try again or use geolocation</span>
     </form>
 </div>
 <script src="./js/main.js"></script>
