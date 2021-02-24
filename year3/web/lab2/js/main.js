@@ -28,7 +28,7 @@ function parseResponse(responseText) {
     "hum": `${info.main.humidity} %`,
     "coord": `[${info.coord.lat}, ${info.coord.lon}]`,
     "cloud": `${cloudiness[Math.trunc(info.clouds.all / 25 - 1e-9)]}`,
-    "icon": `http://openweathermap.org/img/wn/${info.weather[0].icon}@4x.png`
+    "icon": `https://openweathermap.org/img/wn/${info.weather[0].icon}@4x.png`
   };
   // console.log(city);
   return city;
@@ -190,4 +190,4 @@ addForm.addEventListener("submit", function (evt) {
 // 1. remove buttons √
 // 2. refresh  button √
 // 3. loading block √
-// 4. css popup 
+// 4. css popup √
