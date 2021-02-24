@@ -199,6 +199,35 @@ header {
   text-align: center;
   padding: 40px 20px;
 }
+.pop-up-form {
+  margin: 20px 0px;
+}
+.city-name-field {
+  border: none;
+  background-color: #ffffff;
+  color: #a7afb2;
+  border-radius: 5px;
+  /* line-height: 1em; */
+  font-size: 0.8em;
+  padding: 0.7em 1.5em;
+}
+.show-weather-button {
+  background-color: #6f8288;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  /* line-height: 1em; */
+  /* font-size: 0.8em; */
+  padding: 0.5em 1.5em;
+}
+.use-geolocation-button {
+  background-color: #48484a;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  /* font-size: 0.8em; */
+  padding: 0.5em 1.5em;
+}
 .error-text {
   color: crimson;
 }

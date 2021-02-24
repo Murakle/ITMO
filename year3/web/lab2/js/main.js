@@ -189,5 +189,5 @@ addForm.addEventListener("submit", function (evt) {
 // todo 
 // 1. remove buttons √
 // 2. refresh  button √
-// 3. loading block 
-// 4. css popup
+// 3. loading block √
+// 4. css popup 
