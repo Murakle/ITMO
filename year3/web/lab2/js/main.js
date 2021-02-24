@@ -30,7 +30,7 @@ function parseResponse(responseText) {
     "cloud": `${cloudiness[Math.trunc(info.clouds.all / 25 - 1e-9)]}`,
     "icon": `http://openweathermap.org/img/wn/${info.weather[0].icon}@4x.png`
   };
-  console.log(city);
+  // console.log(city);
   return city;
 }
 
@@ -56,8 +56,8 @@ function getRequest(requestString, resultBlock, successFunc, errorFunc) {
     if (this.readyState === this.DONE) {
       if(this.status === 200) {
         let city = parseResponse(this.responseText);
-        refreshCity(resultBlock, city);
         successFunc(resultBlock, city.name);
+        refreshCity(resultBlock, city);
       } else {
         errorFunc();
       }
@@ -83,12 +83,25 @@ function majorError() {
 function minorError() {
   alert("No city with this name");
 }
+function minorStartSuccess(clone, cityName) {
+  
+  localStorage.setItem('cities', JSON.stringify(Array.from(currentCities.keys())));
+  clone.querySelector('ul').classList.remove('hidden');
+  clone.querySelector('.loading-block').classList.add('hidden');
+}
 function minorSuccess(clone, cityName) {
   minorCitiesList.appendChild(clone);
   currentCities.set(cityName, clone);
   localStorage.setItem('cities', JSON.stringify(Array.from(currentCities.keys())));
+  clone.querySelector('ul').classList.remove('hidden');
+  clone.querySelector('.loading-block').classList.add('hidden');
 }
 function majorSuccess(clone, cityName) {
+  let majorCityHid = majorCity.querySelectorAll('.shrink-block');
+  majorCityHid.forEach(element => {
+    element.classList.remove('hidden');
+  });
+  majorCity.querySelector('.loading-block').classList.add('hidden');
   closePopup();
 }
 function removeMinorCity(evt) {
@@ -99,10 +112,10 @@ function removeMinorCity(evt) {
   currentCities.delete(cityName);
   localStorage.setItem('cities', JSON.stringify(Array.from(currentCities.keys())));
 }
-function getRequestWithLocation(position, resultBlock, errorFunc) {
+function getRequestWithLocation(position, resultBlock, successFunc, errorFunc) {
   const latitude  = position.coords.latitude;
   const longitude = position.coords.longitude;
-  getRequest(`https://community-open-weather-map.p.rapidapi.com/weather?lat=${latitude}&lon=${longitude}&lang=en&units=metric`, resultBlock, errorFunc);
+  getRequest(`https://community-open-weather-map.p.rapidapi.com/weather?lat=${latitude}&lon=${longitude}&lang=en&units=metric`, resultBlock, successFunc, errorFunc);
 }
 function getRequestWithCityName(cityName, resultBlock, successFunc, errorFunc) {
   getRequest(`https://community-open-weather-map.p.rapidapi.com/weather?q=${cityName}&lang=en&units=metric`, resultBlock, successFunc, errorFunc);  
@@ -111,7 +124,8 @@ function getRequestWithCityName(cityName, resultBlock, successFunc, errorFunc) {
 // Major city 
 let geoButton = document.querySelector('.use-geolocation-button');
 let welcomeForm = document.querySelector('.pop-up-form');
-geoButton.addEventListener("click", function (evt) {
+let refreshButton = document.querySelector('.refresh-button');
+geoButton.addEventListener('click', function (evt) {
   evt.preventDefault();
   if(!navigator.geolocation) {
     geolocationError();
@@ -120,10 +134,19 @@ geoButton.addEventListener("click", function (evt) {
     navigator.geolocation.getCurrentPosition(geolocationSuccess, geolocationError);
   }
 });
-welcomeForm.addEventListener("submit", function (evt) {
+welcomeForm.addEventListener('submit', function (evt) {
   evt.preventDefault();
   let cityName = welcomeForm.cityName.value;
   getRequestWithCityName(cityName, majorCity, majorSuccess, majorError);
+});
+refreshButton.addEventListener('click', function (evt) {
+  evt.preventDefault();
+  if(!navigator.geolocation) {
+    geolocationError();
+  } else {
+    console.log('Locating…');
+    navigator.geolocation.getCurrentPosition(geolocationSuccess, geolocationError);
+  }
 });
 
 // Minor cities 
@@ -135,10 +158,17 @@ if(!cities) {
 console.log(cities);
 for (let i = 0; i < cities.length; i++) {
   let clone = document.importNode(minorCityTemplate.content.firstElementChild, true);
+  clone.querySelector('.city-header').innerHTML = cities[i];
   clone.setAttribute('cityName', cities[i]);
   let closeButton = clone.querySelector('.minor-city-remove-button');
   closeButton.addEventListener('click', removeMinorCity);
-  getRequestWithCityName(cities[i], clone, minorSuccess, minorError);
+  minorCitiesList.appendChild(clone);
+  currentCities.set(cities[i], clone);
+}
+for (let i = 0; i < cities.length; i++) {
+  let clone = minorCitiesList.childNodes[i];
+  console.log(clone);
+  getRequestWithCityName(cities[i], clone, minorStartSuccess, minorError);
 }
 // minor cities header 
 let addForm = document.querySelector('.add-favorite');
@@ -158,6 +188,6 @@ addForm.addEventListener("submit", function (evt) {
 
 // todo 
 // 1. remove buttons √
-// 2. refresh  button 
-// 3. loading block
+// 2. refresh  button √
+// 3. loading block 
 // 4. css popup

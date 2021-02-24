@@ -21,12 +21,12 @@
   </header>
   <main>
     <section class="major-city">
-      <div class="major-city-main-info shrink-block">
+      <div class="major-city-main-info shrink-block hidden">
         <h2 class="city-header major-city-header">Saint Petersburg</h2>
         <div class="major-city-weather-icon-container"><img class="city-weather-icon major-city-weather-icon"></img></div>
         <div class="city-temperature major-city-temperature">5ºC</div>
       </div>
-      <div class="shrink-block">
+      <div class="shrink-block hidden">
         <ul>
           <li class="weather-param weather-wind">
             <strong class="weather-param-name">Wind</strong>
@@ -50,6 +50,12 @@
           </li>
         </ul>
       </div>
+      <div class="loading-block">
+        <h2>Loading ...</h2>
+        <div class="loading-bar">
+          <div></div><div></div><div></div>
+        </div>
+      </div>
     </section>
     <section class="favorites-head">
       <h2 class="favorites-header shrink-block">Favorites</h2>
@@ -59,40 +65,7 @@
       </form>
     </section>
     <section class="minor-cities">
-      <ul class="minor-cities-list">
-        <template id="minor-city-template">
-          <li class="minor-city shrink-block">
-            <div class="minor-city-main-info">
-              <h3 class="city-header minor-city-header">Moscow</h3>
-              <div class="city-temperature minor-city-temperature ">10ºC</div>
-              <div class="minor-city-weather-icon-container"><img class="city-weather-icon minor-city-weather-icon"></img></div>
-              <button class="minor-city-remove-button circle-button">x</button>
-            </div>
-            <ul class="weather-params-container">
-              <li class="weather-param weather-wind">
-                <strong class="weather-param-name">Wind</strong>
-                <span class="weather-param-value">4,0 м/с, Юго-Восточный</span>
-              </li>
-              <li class="weather-param weather-cloud">
-                <strong class="weather-param-name">Clouds</strong>
-                <span class="weather-param-value">Облачно с прояснениями</span>
-              </li>
-              <li class="weather-param weather-pressure">
-                <strong class="weather-param-name">Pressure</strong>
-                <span class="weather-param-value">755 мм рт. ст.</span>
-              </li>
-              <li class="weather-param weather-humidity">
-                <strong class="weather-param-name">Humidity</strong>
-                <span class="weather-param-value">75%</span>
-              </li>
-              <li class="weather-param weather-coord">
-                <strong class="weather-param-name">Coordinates</strong>
-                <span class="weather-param-value">[59.88, 30.42]</span>
-              </li>
-            </ul>
-          </li>
-        </template>
-      </ul>
+      <ul class="minor-cities-list"></ul>
     </section>
   </main>
   </div>
@@ -106,7 +79,46 @@
       <span class="error-text geoloc-error hidden"><br/>You haven't gave permission to use your geolocation, try again or fix something in settings or your browser doesn't support geolocation</span>
       <span class="error-text city-name-error hidden"><br/>Not correct city name try again or use geolocation</span>
     </form>
+  </div>
 </div>
+<template id="minor-city-template">
+  <li class="minor-city shrink-block">
+    <div class="minor-city-main-info">
+      <h3 class="city-header minor-city-header">City name</h3>
+      <div class="city-temperature minor-city-temperature ">TºC</div>
+      <div class="minor-city-weather-icon-container"><img class="city-weather-icon minor-city-weather-icon"></div>
+      <button class="minor-city-remove-button circle-button">x</button>
+    </div>
+    <ul class="weather-params-container hidden">
+      <li class="weather-param weather-wind">
+        <strong class="weather-param-name">Wind</strong>
+        <span class="weather-param-value">4,0 м/с, Юго-Восточный</span>
+      </li>
+      <li class="weather-param weather-cloud">
+        <strong class="weather-param-name">Clouds</strong>
+        <span class="weather-param-value">Облачно с прояснениями</span>
+      </li>
+      <li class="weather-param weather-pressure">
+        <strong class="weather-param-name">Pressure</strong>
+        <span class="weather-param-value">755 мм рт. ст.</span>
+      </li>
+      <li class="weather-param weather-humidity">
+        <strong class="weather-param-name">Humidity</strong>
+        <span class="weather-param-value">75%</span>
+      </li>
+      <li class="weather-param weather-coord">
+        <strong class="weather-param-name">Coordinates</strong>
+        <span class="weather-param-value">[59.88, 30.42]</span>
+      </li>
+    </ul>
+    <div class="loading-block">
+      <h3>Loading ...</h3>
+      <div class="loading-bar">
+        <div></div><div></div><div></div>
+      </div>
+    </div>
+  </li>
+</template>
 <script src="./js/main.js"></script>
 </body>
 </html>
