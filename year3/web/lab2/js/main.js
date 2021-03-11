@@ -49,22 +49,16 @@ function refreshCity(cityBlock, city) {
   let paramsBlock = cityBlock.querySelector('ul');
   refreshCityParams(paramsBlock, city);
 }
-function getRequest(requestString, resultBlock, successFunc, errorFunc) {
+function getRequest(requestString, resultBlock, resultHandler) {
   const data = null;
   const xhr = new XMLHttpRequest();
   xhr.addEventListener("readystatechange", function () {
     if (this.readyState === this.DONE) {
-      if(this.status === 200) {
-        let city = parseResponse(this.responseText);
-        successFunc(resultBlock, city.name);
-        refreshCity(resultBlock, city);
-      } else {
-        errorFunc();
-      }
+      resultHandler(resultBlock, this);
     }
   });
   xhr.open("GET", requestString);
-  xhr.setRequestHeader("x-rapidapi-key", "dc1339089bmshce8aa1495e73b22p119cc5jsn2333ba2ed2b7");
+  xhr.setRequestHeader("x-rapidapi-key", "7f6c7b7f57msh8c957df57e3703bp115534jsn1145a5c9ed37");
   xhr.setRequestHeader("x-rapidapi-host", "community-open-weather-map.p.rapidapi.com");
   xhr.send(data);
 }
@@ -74,36 +68,61 @@ function geolocationError() {
   errorText.classList.remove('hidden');
 }
 function geolocationSuccess(position) {
-  getRequestWithLocation(position, majorCity, majorSuccess, majorError);
+  getRequestWithLocation(position, majorCity, majorHandler);
 }
-function majorError() {
-  errorText = welcomePopup.querySelector('.city-name-error');
-  errorText.classList.remove('hidden');
+function majorHandler(resultBlock, answer) {
+  if (answer.status === 200) {
+    let city = parseResponse(answer.responseText);
+    refreshCity(resultBlock, city);
+    let majorCityHid = majorCity.querySelectorAll('.shrink-block');
+    majorCityHid.forEach(element => {
+      element.classList.remove('hidden');
+    });
+    majorCity.querySelector('.loading-block').classList.add('hidden');
+    closePopup();
+  } else if (answer.status === 404) {
+    errorText = welcomePopup.querySelector('.city-name-error');
+    errorText.classList.remove('hidden');
+  } else {
+    alert("Something went wrong");
+  }
 }
-function minorError() {
-  alert("No city with this name");
+function minorAddHandler(resultBlock, answer) {
+  if (answer.status === 200) {
+    let city = parseResponse(answer.responseText);
+      refreshCity(resultBlock, city);
+    if (!currentCities.has(city.name)) {
+      currentCities.set(city.name, resultBlock);
+      localStorage.setItem('cities', JSON.stringify(Array.from(currentCities.keys())));
+      resultBlock.querySelector('ul').classList.remove('hidden');
+      resultBlock.querySelector('.loading-block').classList.add('hidden');
+    } else {
+      resultBlock.remove();
+      alert('City with this name is already in favorites');
+    }
+  } else if (status === 404) {
+    resultBlock.remove();
+    alert("No city with this name");
+  } else {
+    resultBlock.remove();
+    alert("Something went wrong");
+  }
 }
-function minorStartSuccess(clone, cityName) {
-  
-  localStorage.setItem('cities', JSON.stringify(Array.from(currentCities.keys())));
-  clone.querySelector('ul').classList.remove('hidden');
-  clone.querySelector('.loading-block').classList.add('hidden');
+
+function minorStartHandler(resultBlock, answer) {
+  if (answer.status === 200) {
+    let city = parseResponse(answer.responseText);
+    refreshCity(resultBlock, city);
+    localStorage.setItem('cities', JSON.stringify(Array.from(currentCities.keys())));
+    resultBlock.querySelector('ul').classList.remove('hidden');
+    resultBlock.querySelector('.loading-block').classList.add('hidden');
+  } else if (answer.status === 404) {
+    alert("No city with this name");
+  } else {
+    alert("Something went wrong");
+  }
 }
-function minorSuccess(clone, cityName) {
-  minorCitiesList.appendChild(clone);
-  currentCities.set(cityName, clone);
-  localStorage.setItem('cities', JSON.stringify(Array.from(currentCities.keys())));
-  clone.querySelector('ul').classList.remove('hidden');
-  clone.querySelector('.loading-block').classList.add('hidden');
-}
-function majorSuccess(clone, cityName) {
-  let majorCityHid = majorCity.querySelectorAll('.shrink-block');
-  majorCityHid.forEach(element => {
-    element.classList.remove('hidden');
-  });
-  majorCity.querySelector('.loading-block').classList.add('hidden');
-  closePopup();
-}
+
 function removeMinorCity(evt) {
   evt.preventDefault();
   block = this.parentNode.parentNode;
@@ -112,13 +131,14 @@ function removeMinorCity(evt) {
   currentCities.delete(cityName);
   localStorage.setItem('cities', JSON.stringify(Array.from(currentCities.keys())));
 }
-function getRequestWithLocation(position, resultBlock, successFunc, errorFunc) {
+
+function getRequestWithLocation(position, resultBlock, resultHandler) {
   const latitude  = position.coords.latitude;
   const longitude = position.coords.longitude;
-  getRequest(`https://community-open-weather-map.p.rapidapi.com/weather?lat=${latitude}&lon=${longitude}&lang=en&units=metric`, resultBlock, successFunc, errorFunc);
+  getRequest(`https://community-open-weather-map.p.rapidapi.com/weather?lat=${latitude}&lon=${longitude}&lang=en&units=metric`, resultBlock, resultHandler);
 }
-function getRequestWithCityName(cityName, resultBlock, successFunc, errorFunc) {
-  getRequest(`https://community-open-weather-map.p.rapidapi.com/weather?q=${cityName}&lang=en&units=metric`, resultBlock, successFunc, errorFunc);  
+function getRequestWithCityName(cityName, resultBlock, resultHandler) {
+  getRequest(`https://community-open-weather-map.p.rapidapi.com/weather?q=${cityName}&lang=en&units=metric`, resultBlock, resultHandler);  
 }
 
 // Major city 
@@ -137,7 +157,7 @@ geoButton.addEventListener('click', function (evt) {
 welcomeForm.addEventListener('submit', function (evt) {
   evt.preventDefault();
   let cityName = welcomeForm.cityName.value;
-  getRequestWithCityName(cityName, majorCity, majorSuccess, majorError);
+  getRequestWithCityName(cityName, majorCity, majorHandler);
 });
 refreshButton.addEventListener('click', function (evt) {
   evt.preventDefault();
@@ -168,26 +188,19 @@ for (let i = 0; i < cities.length; i++) {
 for (let i = 0; i < cities.length; i++) {
   let clone = minorCitiesList.childNodes[i];
   console.log(clone);
-  getRequestWithCityName(cities[i], clone, minorStartSuccess, minorError);
+  getRequestWithCityName(cities[i], clone, minorStartHandler);
 }
 // minor cities header 
 let addForm = document.querySelector('.add-favorite');
 addForm.addEventListener("submit", function (evt) {
   evt.preventDefault();
-  let cityName = addForm.cityName.value;
-  if (currentCities.has(cityName)) {
-    alert("This city is already in favorites");
-  } else {
-    let clone = document.importNode(minorCityTemplate.content.firstElementChild, true);
-    clone.setAttribute('cityName', cityName);
-    let closeButton = clone.querySelector('.minor-city-remove-button');
-    closeButton.addEventListener('click', removeMinorCity);
-    getRequestWithCityName(cityName, clone, minorSuccess, minorError);
-  }
+  let cityName = addForm.cityName.value.toLowerCase();
+  addForm.cityName.value = "";
+  let clone = document.importNode(minorCityTemplate.content.firstElementChild, true);
+  clone.setAttribute('cityName', cityName);
+  clone.querySelector('.city-header').innerHTML = cityName;
+  let closeButton = clone.querySelector('.minor-city-remove-button');
+  closeButton.addEventListener('click', removeMinorCity);
+  minorCitiesList.appendChild(clone);
+  getRequestWithCityName(cityName, clone, minorAddHandler);
 });
-
-// todo 
-// 1. remove buttons √
-// 2. refresh  button √
-// 3. loading block √
-// 4. css popup √

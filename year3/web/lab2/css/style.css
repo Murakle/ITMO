@@ -199,6 +199,7 @@ header {
   transform: translate(-50%, -50%);
   text-align: center;
   padding: 40px 20px;
+  border-radius: 30px;
 }
 .pop-up-form {
   margin: 20px 0px;
