@@ -32,7 +32,7 @@ module.exports.datastores = {
   *                                                                          *
   ***************************************************************************/
 
-  default: {
+  mongodb: {
 
     /***************************************************************************
     *                                                                          *
@@ -48,10 +48,15 @@ module.exports.datastores = {
     *    (See https://sailsjs.com/config/datastores for help.)                 *
     *                                                                          *
     ***************************************************************************/
-    // adapter: 'sails-mysql',
-    // url: 'mysql://user:password@host:port/database',
+    adapter: 'sails-mongo',
+    //url: 'mongodb://127.0.0.1:27017'
+    host: 'localhost',
+    port: 27017,
+    // user: username,
+    // password: password,
+    database: 'weather-app-db'
 
-  },
+  }
 
 
 };
