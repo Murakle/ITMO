@@ -96,6 +96,7 @@ function minorAddHandler(resultBlock, answer) {
   if (answer.status === 200) {
     let city = parseResponse(answer.responseText);
     refreshCity(resultBlock, city);
+    resultBlock.setAttribute('cityName', city.name);
     resultBlock.querySelector('ul').classList.remove('hidden');
     resultBlock.querySelector('.loading-block').classList.add('hidden');
   } else if (answer.status === 404) {
@@ -221,7 +222,6 @@ addForm.addEventListener("submit", function (evt) {
   let cityName = addForm.cityName.value.toLowerCase();
   addForm.cityName.value = "";
   let clone = document.importNode(minorCityTemplate.content.firstElementChild, true);
-  clone.setAttribute('cityName', cityName);
   clone.querySelector('.city-header').innerHTML = cityName;
   let closeButton = clone.querySelector('.minor-city-remove-button');
   closeButton.addEventListener('click', removeMinorCity);

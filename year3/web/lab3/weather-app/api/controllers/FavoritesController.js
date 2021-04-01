@@ -49,7 +49,7 @@ module.exports = {
     }
     Favorites.destroy({name: cityName}).fetch().exec(function (err, name) {
         if (err) return res.serverError();
-        sails.log("delete ", cityName);
+        sails.log("delete ", name);
         return res.json(name);
     })
   }
